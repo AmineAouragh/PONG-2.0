@@ -50,6 +50,21 @@ while True:
 
                 carryOn = False
 
+    # Moving the paddles when the user uses the arrow keys
+    keys = pygame.key.get_pressed()
+
+    if keys[pygame.K_w]:
+        paddleA.moveUp(1)
+
+    if keys[pygame.K_s]:
+        paddleA.moveDown(1)
+
+    if keys[pygame.K_UP]:
+        paddleB.moveUp(1)
+
+    if keys[pygame.K_DOWN]:
+        paddleB.moveDown(1)
+
 
     all_sprites_list.update()
 
