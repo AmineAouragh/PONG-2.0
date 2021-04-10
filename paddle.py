@@ -17,3 +17,19 @@ class Paddle(pygame.sprite.Sprite):
 
         # Fetch the rectangle object that has the dimensions of the image
         self.rect = self.image.get_rect()
+
+    def moveUp(self, steps):
+
+        self.rect.y -= steps
+
+        if self.rect.y < 0:
+
+            self.rect.y = 0
+
+    def moveDown(self, steps):
+
+        self.rect.y += steps
+
+        if self.rect.y > 1080:
+
+            self.rect.y = 1080
