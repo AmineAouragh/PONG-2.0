@@ -30,6 +30,6 @@ class Paddle(pygame.sprite.Sprite):
 
         self.rect.y += steps
 
-        if self.rect.y > 1080:
+        if self.rect.y > 780:
 
-            self.rect.y = 1080
+            self.rect.y = 780
