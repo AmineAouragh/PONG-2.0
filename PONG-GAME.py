@@ -1,7 +1,9 @@
 # Import the pygame library and initialise the game engine
 import pygame
+from time import sleep
 from paddle import Paddle
 from ball import Ball
+
 
 pygame.init()
 
@@ -15,17 +17,20 @@ screen = pygame.display.set_mode(size)
 pygame.display.set_caption("PONG 2.0")
 
 
+def init_position(sprite, x, y):
+
+    sprite.rect.x = x
+    sprite.rect.y = y
+
+
 paddleA = Paddle(WHITE, 20, 120)
-paddleA.rect.x = 50
-paddleA.rect.y = 350
+init_position(paddleA, 50, 350)
 
 paddleB = Paddle(WHITE, 20, 120)
-paddleB.rect.x = 1120
-paddleB.rect.y = 350
+init_position(paddleB, 1120, 350)
 
 ball = Ball(WHITE, 20, 20)
-ball.rect.x = 590
-ball.rect.y = 440
+init_position(ball, 590, 440)
 
 # This will be a list that will contain all the sprites we intend to use in the game
 all_sprites_list = pygame.sprite.Group()
@@ -39,6 +44,10 @@ carryOn = True
 
 # The clock will be used to control how fast the screen updates
 clock = pygame.time.Clock()
+
+# Initialise player scores
+scoreA = 0
+scoreB = 0
 
 # ----Main program loop----
 while True:
@@ -75,6 +84,31 @@ while True:
     all_sprites_list.update()
 
 
+    if ball.rect.x >= 1180:
+
+        scoreA += 1
+        ball.rect.x = 590
+        ball.rect.y = 440
+
+    if ball.rect.x <= 0:
+
+        scoreB += 1
+        ball.rect.x = 590
+        ball.rect.y = 440
+
+    if ball.rect.y >= 880:
+
+        ball.velocity[1] = -ball.velocity[1]
+
+    if ball.rect.y <= 0:
+
+        ball.velocity[1] = -ball.velocity[1]
+
+
+    if pygame.sprite.collide_mask(ball, paddleA) or pygame.sprite.collide_mask(ball, paddleB):
+
+        ball.bounce()
+
     # Clear the screen to black
     screen.fill(BLACK)
 
@@ -83,6 +117,13 @@ while True:
 
     # Draw the sprites
     all_sprites_list.draw(screen)
+
+    # Display scores
+    font = pygame.font.Font(None, 74)
+    text = font.render(str(scoreA), 1, WHITE)
+    screen.blit(text, (280, 30))
+    text = font.render(str(scoreB), 1, WHITE)
+    screen.blit(text, (880, 30))
 
     # Updating the screen what we've drawn
     pygame.display.flip()
