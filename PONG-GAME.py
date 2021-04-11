@@ -1,6 +1,7 @@
 # Import the pygame library and initialise the game engine
 import pygame
 from paddle import Paddle
+from ball import Ball
 
 pygame.init()
 
@@ -22,12 +23,17 @@ paddleB = Paddle(WHITE, 20, 120)
 paddleB.rect.x = 1120
 paddleB.rect.y = 350
 
+ball = Ball(WHITE, 20, 20)
+ball.rect.x = 590
+ball.rect.y = 440
+
 # This will be a list that will contain all the sprites we intend to use in the game
 all_sprites_list = pygame.sprite.Group()
 
 # Add the paddles to the sprites list
 all_sprites_list.add(paddleA)
 all_sprites_list.add(paddleB)
+all_sprites_list.add(ball)
 
 carryOn = True
 
