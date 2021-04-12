@@ -1,6 +1,9 @@
 # Import the pygame library and initialise the game engine
 import pygame
+import sys
 from time import sleep
+from playsound import playsound
+
 from paddle import Paddle
 from ball import Ball
 
@@ -40,8 +43,6 @@ all_sprites_list.add(paddleA)
 all_sprites_list.add(paddleB)
 all_sprites_list.add(ball)
 
-carryOn = True
-
 # The clock will be used to control how fast the screen updates
 clock = pygame.time.Clock()
 
@@ -57,13 +58,15 @@ while True:
 
         if event.type == pygame.QUIT:  # If user clicked close
 
-            carryOn = False  # Flag that we are done so we exit this loop
+            pygame.quit()
+            sys.exit()
 
         elif event.type == pygame.KEYDOWN:
 
             if event.key == pygame.K_x:  # Pressing x will quit the game
 
-                carryOn = False
+                pygame.quit()
+                sys.exit()
 
     # Moving the paddles when the user uses the arrow keys
     keys = pygame.key.get_pressed()
@@ -87,14 +90,14 @@ while True:
     if ball.rect.x >= 1180:
 
         scoreA += 1
-        ball.rect.x = 590
-        ball.rect.y = 440
+        init_position(ball, 590, 440)
+        sleep(0.3)
 
     if ball.rect.x <= 0:
 
         scoreB += 1
-        ball.rect.x = 590
-        ball.rect.y = 440
+        init_position(ball, 590, 440)
+        sleep(0.3)
 
     if ball.rect.y >= 880:
 
@@ -108,6 +111,7 @@ while True:
     if pygame.sprite.collide_mask(ball, paddleA) or pygame.sprite.collide_mask(ball, paddleB):
 
         ball.bounce()
+        playsound("collision.wav")
 
     # Clear the screen to black
     screen.fill(BLACK)
