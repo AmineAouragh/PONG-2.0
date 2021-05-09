@@ -26,22 +26,20 @@ def init_position(sprite, x, y):
     sprite.rect.y = y
 
 
-paddleA = Paddle(WHITE, 20, 120)
-init_position(paddleA, 50, 350)
+paddleL = Paddle(WHITE, 20, 120)
+init_position(paddleL, 50, 350)
 
-paddleB = Paddle(WHITE, 20, 120)
-init_position(paddleB, 1120, 350)
+paddleR = Paddle(WHITE, 20, 120)
+init_position(paddleR, 1120, 350)
 
 ball = Ball(WHITE, 20, 20)
 init_position(ball, 590, 440)
 
 # This will be a list that will contain all the sprites we intend to use in the game
-all_sprites_list = pygame.sprite.Group()
+sprites = pygame.sprite.Group()
 
 # Add the paddles to the sprites list
-all_sprites_list.add(paddleA)
-all_sprites_list.add(paddleB)
-all_sprites_list.add(ball)
+sprites.add(paddleL, paddleR, ball)
 
 # The clock will be used to control how fast the screen updates
 clock = pygame.time.Clock()
@@ -52,6 +50,8 @@ scoreB = 0
 
 # ----Main program loop----
 while True:
+
+    pause = False
 
     # --- Main event loop ---
     for event in pygame.event.get():  # User did something
@@ -68,24 +68,31 @@ while True:
                 pygame.quit()
                 sys.exit()
 
+            if event.key == pygame.K_p or event.key == pygame.K_SPACE:
+
+                pause = True
+
+    while pause:
+
+        pause = True
+
+
     # Moving the paddles when the user uses the arrow keys
     keys = pygame.key.get_pressed()
 
     if keys[pygame.K_w]:
-        paddleA.moveUp(1)
+        paddleL.moveUp(2)
 
     if keys[pygame.K_s]:
-        paddleA.moveDown(1)
+        paddleL.moveDown(2)
 
     if keys[pygame.K_UP]:
-        paddleB.moveUp(1)
+        paddleR.moveUp(2)
 
     if keys[pygame.K_DOWN]:
-        paddleB.moveDown(1)
+        paddleR.moveDown(2)
 
-
-    all_sprites_list.update()
-
+    sprites.update()
 
     if ball.rect.x >= 1180:
 
@@ -101,17 +108,16 @@ while True:
 
     if ball.rect.y >= 880:
 
-        ball.velocity[1] = -ball.velocity[1]
+        ball.speed[1] = -ball.speed[1]
 
     if ball.rect.y <= 0:
 
-        ball.velocity[1] = -ball.velocity[1]
+        ball.speed[1] = -ball.speed[1]
 
-
-    if pygame.sprite.collide_mask(ball, paddleA) or pygame.sprite.collide_mask(ball, paddleB):
+    if pygame.sprite.collide_mask(ball, paddleL) or pygame.sprite.collide_mask(ball, paddleR):
 
         ball.bounce()
-        playsound("collision.wav")
+        # playsound("collision.wav")
 
     # Clear the screen to black
     screen.fill(BLACK)
@@ -120,7 +126,7 @@ while True:
     pygame.draw.line(screen, WHITE, [599, 0], [599, 900], 5)
 
     # Draw the sprites
-    all_sprites_list.draw(screen)
+    sprites.draw(screen)
 
     # Display scores
     font = pygame.font.Font(None, 74)
