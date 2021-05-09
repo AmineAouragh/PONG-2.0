@@ -1,7 +1,7 @@
 import pygame
 from random import randint
+from colors import BLACK
 
-BLACK = (0, 0, 0)
 
 class Ball(pygame.sprite.Sprite):
 
@@ -13,17 +13,17 @@ class Ball(pygame.sprite.Sprite):
         self.image.fill(BLACK)
         self.image.set_colorkey(BLACK)
 
-        pygame.draw.rect(self.image, color, [0, 0, width, height])
+        pygame.draw.circle(self.image, color, (10, 10), 10)
 
-        self.velocity = [randint(2, 5), randint(-3, 7)]
+        self.speed = [1, 1]
 
         self.rect = self.image.get_rect()
 
     def update(self):
-        self.rect.x += self.velocity[0]
-        self.rect.y += self.velocity[1]
+        self.rect.x += self.speed[0]
+        self.rect.y += self.speed[1]
 
     def bounce(self):
-        self.velocity[0] = -self.velocity[0]
-        self.velocity[1] = randint(-8, 8)
+        self.speed[0] = -self.speed[0]
+        self.speed[1] = -self.speed[1]
 
