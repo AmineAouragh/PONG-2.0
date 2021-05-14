@@ -82,12 +82,28 @@ def main():
     screen = pygame.display.set_mode((800, 600))
 
     # create a ui element
-    uielement = UIElement(
-        center_position=(400, 400),
+    uielement1 = UIElement(
+        center_position=(400, 180),
         font_size=30,
         bg_rgb=BLUE,
         text_rgb=WHITE,
-        text="Hello World"
+        text="Start"
+    )
+
+    uielement2 = UIElement(
+        center_position=(400, 300),
+        font_size=30,
+        bg_rgb=BLUE,
+        text_rgb=WHITE,
+        text="Theme"
+    )
+
+    uielement3 = UIElement(
+        center_position=(400, 420),
+        font_size=30,
+        bg_rgb=BLUE,
+        text_rgb=WHITE,
+        text="Quit"
     )
 
     # main loop
@@ -96,8 +112,15 @@ def main():
             pass
         screen.fill(BLUE)
 
-        uielement.update(pygame.mouse.get_pos())
-        uielement.draw(screen)
+        uielement1.update(pygame.mouse.get_pos())
+        uielement1.draw(screen)
+
+        uielement2.update(pygame.mouse.get_pos())
+        uielement2.draw(screen)
+
+        uielement3.update(pygame.mouse.get_pos())
+        uielement3.draw(screen)
+
         pygame.display.flip()
 
 
