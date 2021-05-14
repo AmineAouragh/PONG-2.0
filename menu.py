@@ -106,20 +106,19 @@ def main():
         text="Quit"
     )
 
+    def setElement(uielement):
+        uielement.update(pygame.mouse.get_pos())
+        uielement.draw(screen)
+
     # main loop
     while True:
         for event in pygame.event.get():
             pass
         screen.fill(BLUE)
 
-        uielement1.update(pygame.mouse.get_pos())
-        uielement1.draw(screen)
-
-        uielement2.update(pygame.mouse.get_pos())
-        uielement2.draw(screen)
-
-        uielement3.update(pygame.mouse.get_pos())
-        uielement3.draw(screen)
+        setElement(uielement1)
+        setElement(uielement2)
+        setElement(uielement3)
 
         pygame.display.flip()
 
