@@ -11,9 +11,9 @@ import pygame
 import pygame.freetype
 from pygame.sprite import Sprite
 from pygame.rect import Rect
+import colors
 
 BLUE = (106, 159, 181)
-WHITE = (255, 255, 255)
 
 
 def create_surface_with_text(text, font_size, text_rgb, bg_rgb):
@@ -36,7 +36,7 @@ class UIElement(Sprite):
 
         # Create the image that shows when mouse is over the element
         highlighted_image = create_surface_with_text(
-            text=text, font_size=font_size * 1.2, text_rgb=text_rgb, bg_rgb=bg_rgb
+            text=text, font_size=font_size * 1.2, text_rgb=colors.VIVID_ORANGE, bg_rgb=bg_rgb
         )
 
         # add both images and their rects to lists
@@ -86,7 +86,7 @@ def main():
         center_position=(400, 180),
         font_size=30,
         bg_rgb=BLUE,
-        text_rgb=WHITE,
+        text_rgb=colors.WHITE,
         text="Start"
     )
 
@@ -94,7 +94,7 @@ def main():
         center_position=(400, 300),
         font_size=30,
         bg_rgb=BLUE,
-        text_rgb=WHITE,
+        text_rgb=colors.WHITE,
         text="Theme"
     )
 
@@ -102,7 +102,7 @@ def main():
         center_position=(400, 420),
         font_size=30,
         bg_rgb=BLUE,
-        text_rgb=WHITE,
+        text_rgb=colors.WHITE,
         text="Quit"
     )
 
