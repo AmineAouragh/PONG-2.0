@@ -12,6 +12,7 @@ import pygame.freetype
 from pygame.sprite import Sprite
 from pygame.rect import Rect
 import colors
+from enum import Enum
 
 BLUE = (106, 159, 181)
 
@@ -23,9 +24,13 @@ def create_surface_with_text(text, font_size, text_rgb, bg_rgb):
     return surface.convert_alpha()
 
 
+class GameState(Enum):
+    QUIT = -1
+
+
 class UIElement(Sprite):
     """ An user interface element that can be added to a surface """
-    def __init__(self, center_position, text, font_size, bg_rgb, text_rgb):
+    def __init__(self, center_position, text, font_size, bg_rgb, text_rgb, action=None):
 
         self.mouse_over = False  # indicate if the mouse is over the element
 
@@ -49,6 +54,8 @@ class UIElement(Sprite):
         # calls the init method of the parent sprite class
         super().__init__()
 
+        self.action = action
+
     @property
     def image(self):
 
@@ -59,11 +66,17 @@ class UIElement(Sprite):
 
         return self.rects[1] if self.mouse_over else self.rects[0]
 
-    def update(self, mouse_pos):
+    def update(self, mouse_pos, mouse_up):
+        """
+          Updates the element's appearance depending on the mouse position
+          and returns the button's action if clicked
+        """
 
         if self.rect.collidepoint(mouse_pos):
 
             self.mouse_over = True
+            if mouse_up:
+                return self.action
 
         else:
 
@@ -87,7 +100,8 @@ def main():
         font_size=30,
         bg_rgb=BLUE,
         text_rgb=colors.WHITE,
-        text="Start"
+        text="Start",
+        action=None
     )
 
     uielement2 = UIElement(
@@ -95,30 +109,42 @@ def main():
         font_size=30,
         bg_rgb=BLUE,
         text_rgb=colors.WHITE,
-        text="Theme"
+        text="Theme",
+        action=None
     )
 
-    uielement3 = UIElement(
+    quit_btn = UIElement(
         center_position=(400, 420),
         font_size=30,
         bg_rgb=BLUE,
         text_rgb=colors.WHITE,
-        text="Quit"
+        text="Quit",
+        action=GameState.QUIT
     )
 
     def setElement(uielement):
-        uielement.update(pygame.mouse.get_pos())
+        uielement.update(pygame.mouse.get_pos(), mouse_up)
         uielement.draw(screen)
 
     # main loop
     while True:
+
+        mouse_up = False
+
         for event in pygame.event.get():
-            pass
+            if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
+                mouse_up = True
+
         screen.fill(BLUE)
 
         setElement(uielement1)
         setElement(uielement2)
-        setElement(uielement3)
+
+        ui_action = quit_btn.update(pygame.mouse.get_pos(), mouse_up)
+
+        if ui_action is not None:
+            return
+        quit_btn.draw(screen)
 
         pygame.display.flip()
 
