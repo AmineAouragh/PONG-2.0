@@ -95,7 +95,7 @@ def main():
     screen = pygame.display.set_mode((800, 600))
 
     # create a ui element
-    uielement1 = UIElement(
+    start_btn = UIElement(
         center_position=(400, 180),
         font_size=30,
         bg_rgb=BLUE,
@@ -104,7 +104,7 @@ def main():
         action=None
     )
 
-    uielement2 = UIElement(
+    theme_btn = UIElement(
         center_position=(400, 300),
         font_size=30,
         bg_rgb=BLUE,
@@ -137,8 +137,8 @@ def main():
 
         screen.fill(BLUE)
 
-        setElement(uielement1)
-        setElement(uielement2)
+        setElement(start_btn)
+        setElement(theme_btn)
 
         ui_action = quit_btn.update(pygame.mouse.get_pos(), mouse_up)
 
