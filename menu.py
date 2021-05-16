@@ -15,6 +15,7 @@ from pygame.sprite import Sprite
 from pygame.rect import Rect
 import colors
 from enum import Enum
+from pygame import mixer
 
 BLUE = (106, 159, 181)
 
@@ -77,12 +78,14 @@ class UIElement(Sprite):
         if self.rect.collidepoint(mouse_pos):
 
             self.mouse_over = True
+            pygame.mixer.Sound("beep.mp3").play(loops=0)
             if mouse_up:
                 return self.action
 
         else:
 
             self.mouse_over = False
+            pygame.mixer.Sound("beep.mp3").stop()
 
     def draw(self, surface):
 
@@ -93,6 +96,9 @@ class UIElement(Sprite):
 def main():
 
     pygame.init()
+
+    pygame.mixer.pre_init(44100, -16, 2, 512)
+    mixer.init()
 
     screen = pygame.display.set_mode((800, 600))
 
