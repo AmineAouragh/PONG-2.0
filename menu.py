@@ -7,6 +7,8 @@ When the implementation is finished, tested and confirmed to be perfect
 It will be imported to the main file of the game and linked to the game
 """
 
+import sys
+
 import pygame
 import pygame.freetype
 from pygame.sprite import Sprite
@@ -134,6 +136,14 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 mouse_up = True
+
+            if event.type == pygame.QUIT:
+                pygame.quit()
+
+            elif event.type == pygame.KEYDOWN:
+
+                if event.key == pygame.K_x:
+                    pygame.quit()
 
         screen.fill(BLUE)
 
