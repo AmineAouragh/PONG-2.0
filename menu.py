@@ -78,7 +78,12 @@ class UIElement(Sprite):
         if self.rect.collidepoint(mouse_pos):
 
             self.mouse_over = True
-            pygame.mixer.Sound("beep.mp3").play(loops=0)
+            """
+              The sound still needs to be fixed coz it's playing in loop
+              when button is hovered
+              I have to make it play once and stop
+            """
+            pygame.mixer.Sound("beep.mp3").play()
             if mouse_up:
                 return self.action
 
