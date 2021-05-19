@@ -107,7 +107,7 @@ class UIElement(Sprite):
         surface.blit(self.image, self.rect)
 
 
-def quit_game(event):
+def quit_game_on_event_type(event):
     # When to quit the game and close the screen
     if event.type == pygame.QUIT:  # When the cross at the upper right of the screen is pressed
         pygame.quit()
@@ -157,7 +157,7 @@ def title_screen(screen):
             if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 mouse_up = True
 
-            quit_game(event)  # The block of this function is on line 110
+            quit_game_on_event_type(event)  # The block of this function is on line 101
 
         screen.fill(BLUE)
 
@@ -189,8 +189,8 @@ def play_level(screen):
             if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 mouse_up = True
 
-            quit_game(event)  # The block of this function is on line 110
-            
+            quit_game_on_event_type(event)  # The block of this function is on line 110
+
         screen.fill(BLUE)
 
         ui_action = return_btn.update(pygame.mouse.get_pos(), mouse_up)
@@ -203,32 +203,55 @@ def play_level(screen):
 
 def themes_screen(screen):
 
-    classic = UIElement(
+    classic_theme = UIElement(
         center_position=(400, 150),
-        font_size=20,
+        font_size=30,
         bg_rgb=BLUE,
         text_rgb=colors.WHITE,
         text="CLASSIC BLACK & WHITE",
         action=GameState.MAIN_MENU
     )
 
-    black_red = UIElement(
-        center_position=(400, 350),
-        font_size=20,
+    black_red_theme = UIElement(
+        center_position=(400, 250),
+        font_size=30,
         bg_rgb=BLUE,
         text_rgb=colors.WHITE,
         text="BLACK & RED",
         action=GameState.MAIN_MENU
     )
 
-    green_white = UIElement(
-        center_position=(400, 550),
-        font_size=20,
+    green_white_theme = UIElement(
+        center_position=(400, 350),
+        font_size=30,
         bg_rgb=BLUE,
         text_rgb=colors.WHITE,
         text="GREEN & WHITE SOCCER THEME",
         action=GameState.MAIN_MENU
     )
+
+    buttons = [classic_theme, black_red_theme, green_white_theme]
+
+    while True:
+        # No button is clicked yet
+        mouse_up = False
+
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
+                mouse_up = True
+
+            quit_game_on_event_type(event)  # The block of this function is on line 110
+
+        screen.fill(BLUE)
+
+        for button in buttons:
+
+            ui_action = button.update(pygame.mouse.get_pos(), mouse_up)
+            if ui_action is not None:
+                return ui_action
+            button.draw(screen)
+
+        pygame.display.flip()
 
 
 def main():
