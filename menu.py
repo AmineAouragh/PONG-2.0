@@ -28,9 +28,9 @@ def create_surface_with_text(text, font_size, text_rgb, bg_rgb):
 
 
 class GameState(Enum):
-    QUIT = -1
-    MAIN_MENU = 0
-    NEWGAME = 1
+    QUIT = -1  # When you quit the game
+    MAIN_MENU = 0  # The main_menu of the game
+    NEWGAME = 1  # Ready to play
 
 
 class UIElement(Sprite):
@@ -114,7 +114,7 @@ def title_screen(screen):
         font_size=30,
         bg_rgb=BLUE,
         text_rgb=colors.WHITE,
-        text="Start",
+        text="START",
         action=GameState.NEWGAME
     )
 
@@ -123,7 +123,7 @@ def title_screen(screen):
         font_size=30,
         bg_rgb=BLUE,
         text_rgb=colors.WHITE,
-        text="Theme",
+        text="CHOOSE YOUR THEME",
         action=None
     )
 
@@ -132,7 +132,7 @@ def title_screen(screen):
         font_size=30,
         bg_rgb=BLUE,
         text_rgb=colors.WHITE,
-        text="Quit",
+        text="QUIT",
         action=GameState.QUIT
     )
 
