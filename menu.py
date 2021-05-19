@@ -157,7 +157,7 @@ def title_screen(screen):
             if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 mouse_up = True
 
-            quit_game_on_event_type(event)  # The block of this function is on line 101
+            quit_game_on_event_type(event)  # The block of this function is on line 110
 
         screen.fill(BLUE)
 
