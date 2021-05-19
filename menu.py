@@ -107,6 +107,15 @@ class UIElement(Sprite):
         surface.blit(self.image, self.rect)
 
 
+def quit_game(event):
+    # When to quit the game and close the screen
+    if event.type == pygame.QUIT:  # When the cross at the upper right of the screen is pressed
+        pygame.quit()
+    elif event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_x:  # When the user press X on the keyboard
+            pygame.quit()
+
+
 def title_screen(screen):
 
     # create a ui element
@@ -148,13 +157,7 @@ def title_screen(screen):
             if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 mouse_up = True
 
-            if event.type == pygame.QUIT:  # When the cross at the upper right of the screen is pressed
-                pygame.quit()
-
-            elif event.type == pygame.KEYDOWN:
-
-                if event.key == pygame.K_x:  # When the user press X on the keyboard
-                    pygame.quit()
+            quit_game(event)  # The block of this function is on line 110
 
         screen.fill(BLUE)
 
@@ -185,6 +188,9 @@ def play_level(screen):
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 mouse_up = True
+
+            quit_game(event)  # The block of this function is on line 110
+            
         screen.fill(BLUE)
 
         ui_action = return_btn.update(pygame.mouse.get_pos(), mouse_up)
@@ -205,7 +211,7 @@ def themes_screen(screen):
         text="CLASSIC BLACK & WHITE",
         action=GameState.MAIN_MENU
     )
-    
+
     black_red = UIElement(
         center_position=(400, 350),
         font_size=20,
@@ -214,7 +220,7 @@ def themes_screen(screen):
         text="BLACK & RED",
         action=GameState.MAIN_MENU
     )
-    
+
     green_white = UIElement(
         center_position=(400, 550),
         font_size=20,
