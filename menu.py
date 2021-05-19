@@ -29,6 +29,8 @@ def create_surface_with_text(text, font_size, text_rgb, bg_rgb):
 
 class GameState(Enum):
     QUIT = -1
+    MAIN_MENU = 0
+    NEWGAME = 1
 
 
 class UIElement(Sprite):
@@ -78,6 +80,12 @@ class UIElement(Sprite):
         if self.rect.collidepoint(mouse_pos):
 
             self.mouse_over = True
+
+            """pygame.mouse.set_visible(False)
+            hand_hover_cursor = pygame.image.load("hand-hover.png").convert_alpha()
+            hand_hover_cursor_rect = hand_hover_cursor.get_rect()
+            hand_hover_cursor_rect.center = pygame.mouse.get_pos()"""
+
             """
               The sound still needs to be fixed coz it's playing in loop
               when button is hovered
@@ -98,14 +106,7 @@ class UIElement(Sprite):
         surface.blit(self.image, self.rect)
 
 
-def main():
-
-    pygame.init()
-
-    pygame.mixer.pre_init(44100, -16, 2, 512)
-    mixer.init()
-
-    screen = pygame.display.set_mode((800, 600))
+def title_screen(screen):
 
     # create a ui element
     start_btn = UIElement(
@@ -114,7 +115,7 @@ def main():
         bg_rgb=BLUE,
         text_rgb=colors.WHITE,
         text="Start",
-        action=None
+        action=GameState.NEWGAME
     )
 
     theme_btn = UIElement(
@@ -135,11 +136,8 @@ def main():
         action=GameState.QUIT
     )
 
-    def setElement(uielement):
-        uielement.update(pygame.mouse.get_pos(), mouse_up)
-        uielement.draw(screen)
+    buttons = [start_btn, quit_btn]
 
-    # main loop
     while True:
 
         mouse_up = False
@@ -158,16 +156,41 @@ def main():
 
         screen.fill(BLUE)
 
-        setElement(start_btn)
-        setElement(theme_btn)
+        for button in buttons:
 
-        ui_action = quit_btn.update(pygame.mouse.get_pos(), mouse_up)
-
-        if ui_action is not None:
-            return
-        quit_btn.draw(screen)
+            ui_action = button.update(pygame.mouse.get_pos(), mouse_up)
+            if ui_action is not None:
+                return ui_action
+            button.draw(screen)
 
         pygame.display.flip()
+
+
+def main():
+
+    pygame.init()
+
+    pygame.mixer.pre_init(44100, -16, 2, 512)
+    mixer.init()
+
+    screen = pygame.display.set_mode((800, 600))
+    game_state = GameState.MAIN_MENU
+
+    # main loop
+    while True:
+
+        if game_state == GameState.MAIN_MENU:
+
+            game_state = title_screen(screen)
+
+        if game_state == GameState.NEWGAME:
+
+            game_state = play_level(screen)
+
+        if game_state == GameState.QUIT:
+
+            pygame.quit()
+            return
 
 
 if __name__ == "__main__":
