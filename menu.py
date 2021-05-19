@@ -178,6 +178,21 @@ def play_level(screen):
         action=GameState.MAIN_MENU
     )
 
+    while True:
+
+        mouse_up = False
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
+                mouse_up = True
+        screen.fill(BLUE)
+
+        ui_action = return_btn.update(pygame.mouse.get_pos(), mouse_up)
+        if ui_action is not None:
+            return ui_action
+        return_btn.draw(screen)
+
+        pygame.display.flip()
+
 
 def main():
 
