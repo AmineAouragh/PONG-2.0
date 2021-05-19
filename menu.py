@@ -136,22 +136,23 @@ def title_screen(screen):
         action=GameState.QUIT
     )
 
+    # This list hold the different buttons on the main_menu
     buttons = [start_btn, quit_btn]
 
     while True:
-
+        # No button is clicked yet
         mouse_up = False
 
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 mouse_up = True
 
-            if event.type == pygame.QUIT:
+            if event.type == pygame.QUIT:  # When the cross at the upper right of the screen is pressed
                 pygame.quit()
 
             elif event.type == pygame.KEYDOWN:
 
-                if event.key == pygame.K_x:
+                if event.key == pygame.K_x:  # When the user press X on the keyboard
                     pygame.quit()
 
         screen.fill(BLUE)
@@ -164,6 +165,18 @@ def title_screen(screen):
             button.draw(screen)
 
         pygame.display.flip()
+
+
+def play_level(screen):
+
+    return_btn = UIElement(
+        center_position=(350, 520),
+        font_size=20,
+        bg_rgb=BLUE,
+        text_rgb=colors.WHITE,
+        text="Return to Main Menu",
+        action=GameState.MAIN_MENU
+    )
 
 
 def main():
