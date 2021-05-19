@@ -31,6 +31,7 @@ class GameState(Enum):
     QUIT = -1  # When you quit the game
     MAIN_MENU = 0  # The main_menu of the game
     NEWGAME = 1  # Ready to play
+    THEMES = 2  # Where you choose a special theme of the game
 
 
 class UIElement(Sprite):
@@ -124,7 +125,7 @@ def title_screen(screen):
         bg_rgb=BLUE,
         text_rgb=colors.WHITE,
         text="CHOOSE YOUR THEME",
-        action=None
+        action=GameState.THEMES
     )
 
     quit_btn = UIElement(
@@ -137,7 +138,7 @@ def title_screen(screen):
     )
 
     # This list hold the different buttons on the main_menu
-    buttons = [start_btn, quit_btn]
+    buttons = [start_btn, theme_btn, quit_btn]
 
     while True:
         # No button is clicked yet
@@ -170,7 +171,7 @@ def title_screen(screen):
 def play_level(screen):
 
     return_btn = UIElement(
-        center_position=(350, 520),
+        center_position=(400, 520),
         font_size=20,
         bg_rgb=BLUE,
         text_rgb=colors.WHITE,
@@ -194,6 +195,36 @@ def play_level(screen):
         pygame.display.flip()
 
 
+def themes_screen(screen):
+
+    classic = UIElement(
+        center_position=(400, 150),
+        font_size=20,
+        bg_rgb=BLUE,
+        text_rgb=colors.WHITE,
+        text="CLASSIC BLACK & WHITE",
+        action=GameState.MAIN_MENU
+    )
+    
+    black_red = UIElement(
+        center_position=(400, 350),
+        font_size=20,
+        bg_rgb=BLUE,
+        text_rgb=colors.WHITE,
+        text="BLACK & RED",
+        action=GameState.MAIN_MENU
+    )
+    
+    green_white = UIElement(
+        center_position=(400, 550),
+        font_size=20,
+        bg_rgb=BLUE,
+        text_rgb=colors.WHITE,
+        text="GREEN & WHITE SOCCER THEME",
+        action=GameState.MAIN_MENU
+    )
+
+
 def main():
 
     pygame.init()
@@ -214,6 +245,10 @@ def main():
         if game_state == GameState.NEWGAME:
 
             game_state = play_level(screen)
+
+        if game_state == GameState.THEMES:
+
+            game_state = themes_screen(screen)
 
         if game_state == GameState.QUIT:
 
