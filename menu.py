@@ -118,7 +118,7 @@ def quit_game_on_event_type(event):
             pygame.quit()
 
 
-def title_screen(screen):
+def menu_screen(screen):
 
     # create a ui element
     start_btn = UIElement(
@@ -139,6 +139,24 @@ def title_screen(screen):
         action=GameState.THEMES
     )
 
+    level_btn = UIElement(
+        center_position=(),
+        font_size=30,
+        bg_rgb=BLUE,
+        text_rgb=colors.WHITE,
+        text="GAME LEVEL",
+        action=GameState.LEVELS
+    )
+
+    mode_btn = UIElement(
+        center_position=(),
+        font_size=30,
+        bg_rgb=BLUE,
+        text_rgb=colors.WHITE,
+        text="GAME MODE",
+        action=GameState.MODE
+    )
+
     quit_btn = UIElement(
         center_position=(400, 420),
         font_size=30,
@@ -149,7 +167,7 @@ def title_screen(screen):
     )
 
     # This list hold the different buttons on the main_menu
-    buttons = [start_btn, theme_btn, quit_btn]
+    buttons = [start_btn, theme_btn, level_btn, mode_btn, quit_btn]
 
     while True:
         # No button is clicked yet
@@ -175,7 +193,7 @@ def title_screen(screen):
         pygame.display.flip()
 
 
-def play_level(screen):
+def game_screen(screen):
 
     return_btn = UIElement(
         center_position=(400, 520),
@@ -188,7 +206,8 @@ def play_level(screen):
 
     while True:
 
-        mouse_up = False
+        mouse_up, mouse_down = False
+
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 mouse_up = True
@@ -262,6 +281,40 @@ def themes_screen(screen):
         pygame.display.flip()
 
 
+def levels_screen(screen):
+
+    beginner_level = UIElement(
+
+    ),
+
+    medium_level = UIElement(
+
+    ),
+
+    hard_level = UIElement(
+
+    )
+
+
+def modes_screen(screen):
+
+    training = UIElement(
+
+    ),
+
+    multiplayer = UIElement(
+
+    ),
+
+    versus_ai = UIElement(
+
+    ),
+
+    online_mod = UIElement(
+
+    )
+
+
 def main():
 
     pygame.init()
@@ -277,15 +330,23 @@ def main():
 
         if game_state == GameState.MAIN_MENU:
 
-            game_state = title_screen(screen)
+            game_state = menu_screen(screen)
 
         if game_state == GameState.NEWGAME:
 
-            game_state = play_level(screen)
+            game_state = game_screen(screen)
 
         if game_state == GameState.THEMES:
 
             game_state = themes_screen(screen)
+
+        if game_state == GameState.LEVELS:
+
+            game_state = levels_screen(screen)
+
+        if game_state == GameState.MODE:
+
+            game_state = modes_screen(screen)
 
         if game_state == GameState.QUIT:
 
