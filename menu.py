@@ -161,7 +161,7 @@ def title_screen(screen):
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 mouse_down = True
 
-            quit_game_on_event_type(event)  # The block of this function is on line 101
+            quit_game_on_event_type(event)  # The block of this function is on line 112
 
         screen.fill(BLUE)
 
@@ -195,7 +195,7 @@ def play_level(screen):
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 mouse_down = True
 
-            quit_game_on_event_type(event)  # The block of this function is on line 101
+            quit_game_on_event_type(event)  # The block of this function is on line 112
 
         screen.fill(BLUE)
 
@@ -248,7 +248,7 @@ def themes_screen(screen):
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 mouse_down = True
 
-            quit_game_on_event_type(event)  # The block of this function is on line 101
+            quit_game_on_event_type(event)  # The block of this function is on line 112
 
         screen.fill(BLUE)
 
