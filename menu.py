@@ -32,6 +32,8 @@ class GameState(Enum):
     MAIN_MENU = 0  # The main_menu of the game
     NEWGAME = 1  # Ready to play
     THEMES = 2  # Where you choose a special theme of the game
+    LEVELS = 3  # Where you choose a level (Beginner, Medium, Hard)
+    MODE = 4  # Choose the mode of the game: TRAINING, MULTIPLAYER, Versus AI, ONLINE
 
 
 class UIElement(Sprite):
@@ -39,7 +41,7 @@ class UIElement(Sprite):
     def __init__(self, center_position, text, font_size, bg_rgb, text_rgb, action=None):
 
         self.mouse_over = False  # indicate if the mouse is over the element
-
+        
         # Create the default image
         default_image = create_surface_with_text(
             text=text, font_size=font_size, text_rgb=text_rgb, bg_rgb=bg_rgb
@@ -151,13 +153,15 @@ def title_screen(screen):
 
     while True:
         # No button is clicked yet
-        mouse_up = False
+        mouse_up, mouse_down = False
 
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 mouse_up = True
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+                mouse_down = True
 
-            quit_game_on_event_type(event)  # The block of this function is on line 110
+            quit_game_on_event_type(event)  # The block of this function is on line 112
 
         screen.fill(BLUE)
 
@@ -189,7 +193,7 @@ def play_level(screen):
             if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 mouse_up = True
 
-            quit_game_on_event_type(event)  # The block of this function is on line 110
+            quit_game_on_event_type(event)  # The block of this function is on line 112
 
         screen.fill(BLUE)
 
@@ -240,7 +244,7 @@ def themes_screen(screen):
             if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 mouse_up = True
 
-            quit_game_on_event_type(event)  # The block of this function is on line 110
+            quit_game_on_event_type(event)  # The block of this function is on line 112
 
         screen.fill(BLUE)
 
