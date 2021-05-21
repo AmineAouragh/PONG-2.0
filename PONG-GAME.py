@@ -6,18 +6,26 @@ from playsound import playsound
 
 from paddle import Paddle
 from ball import Ball
-
+from menu import UIElement, BLUE
+import colors
 
 pygame.init()
 
-# Define some colors
-BLACK = (0, 0, 0)
-WHITE = (255, 255, 255)
 
 # Open a new window
 size = (1200, 900)
 screen = pygame.display.set_mode(size)
 pygame.display.set_caption("PONG 2.0")
+
+""" 
+uielement = UIElement(
+    center_position=(450, 500),
+    font_size=30,
+    bg_rgb=BLUE,
+    text_rgb=WHITE,
+    text="Hello World"
+) 
+"""
 
 
 def init_position(sprite, x, y):
@@ -26,13 +34,13 @@ def init_position(sprite, x, y):
     sprite.rect.y = y
 
 
-paddleL = Paddle(WHITE, 20, 120)
+paddleL = Paddle(colors.WHITE, 20, 120)
 init_position(paddleL, 50, 350)
 
-paddleR = Paddle(WHITE, 20, 120)
+paddleR = Paddle(colors.WHITE, 20, 120)
 init_position(paddleR, 1120, 350)
 
-ball = Ball(WHITE, 20, 20)
+ball = Ball(colors.WHITE, 20, 20)
 init_position(ball, 590, 440)
 
 # This will be a list that will contain all the sprites we intend to use in the game
@@ -75,7 +83,6 @@ while True:
     while pause:
 
         pause = True
-
 
     # Moving the paddles when the user uses the arrow keys
     keys = pygame.key.get_pressed()
@@ -120,19 +127,22 @@ while True:
         # playsound("collision.wav")
 
     # Clear the screen to black
-    screen.fill(BLACK)
+    screen.fill(colors.BLACK)
+
+    # uielement.update(pygame.mouse.get_pos())
+    # uielement.draw(screen)
 
     # Draw the net
-    pygame.draw.line(screen, WHITE, [599, 0], [599, 900], 5)
+    pygame.draw.line(screen, colors.WHITE, [599, 0], [599, 900], 5)
 
     # Draw the sprites
     sprites.draw(screen)
 
     # Display scores
     font = pygame.font.Font(None, 74)
-    text = font.render(str(scoreA), 1, WHITE)
+    text = font.render(str(scoreA), 1, colors.WHITE)
     screen.blit(text, (280, 30))
-    text = font.render(str(scoreB), 1, WHITE)
+    text = font.render(str(scoreB), 1, colors.WHITE)
     screen.blit(text, (880, 30))
 
     # Updating the screen what we've drawn
