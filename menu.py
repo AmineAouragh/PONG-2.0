@@ -122,7 +122,7 @@ def menu_screen(screen):
 
     # create a ui element
     start_btn = UIElement(
-        center_position=(400, 180),
+        center_position=(400, 100),
         font_size=30,
         bg_rgb=BLUE,
         text_rgb=colors.WHITE,
@@ -131,7 +131,7 @@ def menu_screen(screen):
     )
 
     theme_btn = UIElement(
-        center_position=(400, 300),
+        center_position=(400, 200),
         font_size=30,
         bg_rgb=BLUE,
         text_rgb=colors.WHITE,
@@ -140,7 +140,7 @@ def menu_screen(screen):
     )
 
     level_btn = UIElement(
-        center_position=(),
+        center_position=(400, 300),
         font_size=30,
         bg_rgb=BLUE,
         text_rgb=colors.WHITE,
@@ -149,7 +149,7 @@ def menu_screen(screen):
     )
 
     mode_btn = UIElement(
-        center_position=(),
+        center_position=(400, 400),
         font_size=30,
         bg_rgb=BLUE,
         text_rgb=colors.WHITE,
@@ -158,7 +158,7 @@ def menu_screen(screen):
     )
 
     quit_btn = UIElement(
-        center_position=(400, 420),
+        center_position=(400, 500),
         font_size=30,
         bg_rgb=BLUE,
         text_rgb=colors.WHITE,
@@ -171,13 +171,16 @@ def menu_screen(screen):
 
     while True:
         # No button is clicked yet
-        mouse_up, mouse_down = False
+        mouse_up = False
+        # mouse_down = False
 
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 mouse_up = True
+            """
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 mouse_down = True
+            """
 
             quit_game_on_event_type(event)  # The block of this function is on line 112
 
@@ -206,13 +209,16 @@ def game_screen(screen):
 
     while True:
 
-        mouse_up, mouse_down = False
+        mouse_up = False
+        # mouse_down = False
 
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 mouse_up = True
+            """
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 mouse_down = True
+            """
 
             quit_game_on_event_type(event)  # The block of this function is on line 112
 
@@ -259,13 +265,16 @@ def themes_screen(screen):
 
     while True:
         # No button is clicked yet
-        mouse_up, mouse_down = False
+        mouse_up = False
+        # mouse_down = False
 
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 mouse_up = True
+            """
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 mouse_down = True
+            """
 
             quit_game_on_event_type(event)  # The block of this function is on line 112
 
@@ -284,35 +293,126 @@ def themes_screen(screen):
 def levels_screen(screen):
 
     beginner_level = UIElement(
-
-    ),
+        center_position=(400, 150),
+        font_size=30,
+        bg_rgb=BLUE,
+        text_rgb=colors.WHITE,
+        text="BEGINNER",
+        action=GameState.MAIN_MENU
+    )
 
     medium_level = UIElement(
-
-    ),
+        center_position=(400, 350),
+        font_size=30,
+        bg_rgb=BLUE,
+        text_rgb=colors.WHITE,
+        text="MEDIUM",
+        action=GameState.MAIN_MENU
+    )
 
     hard_level = UIElement(
-
+        center_position=(400, 550),
+        font_size=30,
+        bg_rgb=BLUE,
+        text_rgb=colors.WHITE,
+        text="HARD",
+        action=GameState.MAIN_MENU
     )
+
+    buttons = [beginner_level, medium_level, hard_level]
+
+    while True:
+        # No button is clicked yet
+        mouse_up = False
+        # mouse_down = False
+
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
+                mouse_up = True
+            """
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+                mouse_down = True
+            """
+
+            quit_game_on_event_type(event)  # The block of this function is on line 112
+
+        screen.fill(BLUE)
+
+        for button in buttons:
+
+            ui_action = button.update(pygame.mouse.get_pos(), mouse_up)
+            if ui_action is not None:
+                return ui_action
+            button.draw(screen)
+
+        pygame.display.flip()
 
 
 def modes_screen(screen):
 
     training = UIElement(
-
-    ),
+        center_position=(400, 100),
+        font_size=30,
+        bg_rgb=BLUE,
+        text_rgb=colors.WHITE,
+        text="TRAINING",
+        action=GameState.MAIN_MENU
+    )
 
     multiplayer = UIElement(
-
-    ),
+        center_position=(400, 250),
+        font_size=30,
+        bg_rgb=BLUE,
+        text_rgb=colors.WHITE,
+        text="MULTIPLAYER",
+        action=GameState.MAIN_MENU
+    )
 
     versus_ai = UIElement(
-
-    ),
+        center_position=(400, 400),
+        font_size=30,
+        bg_rgb=BLUE,
+        text_rgb=colors.WHITE,
+        text="VERSUS AI",
+        action=GameState.MAIN_MENU
+    )
 
     online_mod = UIElement(
-
+        center_position=(400, 550),
+        font_size=30,
+        bg_rgb=BLUE,
+        text_rgb=colors.WHITE,
+        text="ONLINE",
+        action=GameState.MAIN_MENU
     )
+
+    buttons = [training, multiplayer, versus_ai, online_mod]
+
+    while True:
+        # No button is clicked yet
+        mouse_up = False
+        # mouse_down = False
+
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
+                mouse_up = True
+            """
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+                mouse_down = True
+            """
+
+            quit_game_on_event_type(event)  # The block of this function is on line 112
+
+        screen.fill(BLUE)
+
+        for button in buttons:
+
+            ui_action = button.update(pygame.mouse.get_pos(), mouse_up)
+            if ui_action is not None:
+                return ui_action
+            button.draw(screen)
+
+        pygame.display.flip()
 
 
 def main():
