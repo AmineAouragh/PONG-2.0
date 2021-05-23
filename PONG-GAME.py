@@ -3,7 +3,7 @@ import pygame
 import sys
 from time import sleep
 from playsound import playsound
-
+from scoredisplayer import ScoreDisplayer
 from paddle import Paddle
 from ball import Ball
 import colors
@@ -125,11 +125,11 @@ while True:
     sprites.draw(screen)
 
     # Display scores
-    font = pygame.font.Font(None, 74)
-    text = font.render(str(scoreA), True, colors.WHITE)
-    screen.blit(text, (280, 30))
-    text = font.render(str(scoreB), True, colors.WHITE)
-    screen.blit(text, (880, 30))
+    scoreLeft = ScoreDisplayer(None, 74, str(scoreA), colors.WHITE)
+    scoreLeft.draw(screen, 280, 30)
+
+    scoreRight = ScoreDisplayer(None, 74, str(scoreB), colors.WHITE)
+    scoreRight.draw(screen, 880, 30)
 
     # Updating the screen what we've drawn
     pygame.display.flip()
