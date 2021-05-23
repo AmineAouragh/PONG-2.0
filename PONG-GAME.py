@@ -17,20 +17,20 @@ screen = pygame.display.set_mode(size)
 pygame.display.set_caption("PONG 2.0")
 
 
-def init_position(sprite, x, y):
+def set_sprite_position(sprite, x, y):
 
     sprite.rect.x = x
     sprite.rect.y = y
 
 
 paddleL = Paddle(colors.WHITE, 20, 120)
-init_position(paddleL, 50, 350)
+set_sprite_position(paddleL, 50, 350)
 
 paddleR = Paddle(colors.WHITE, 20, 120)
-init_position(paddleR, 1120, 350)
+set_sprite_position(paddleR, 1120, 350)
 
 ball = Ball(colors.WHITE, 20, 20)
-init_position(ball, 590, 440)
+set_sprite_position(ball, 590, 440)
 
 # This will be a list that will contain all the sprites we intend to use in the game
 sprites = pygame.sprite.Group()
@@ -93,13 +93,13 @@ while True:
     if ball.rect.x >= 1180:
 
         scoreA += 1
-        init_position(ball, 590, 440)
+        set_sprite_position(ball, 590, 440)
         sleep(0.3)
 
     if ball.rect.x <= 0:
 
         scoreB += 1
-        init_position(ball, 590, 440)
+        set_sprite_position(ball, 590, 440)
         sleep(0.3)
 
     if ball.rect.y >= 880:
