@@ -6,7 +6,6 @@ from playsound import playsound
 
 from paddle import Paddle
 from ball import Ball
-from menu import UIElement, BLUE
 import colors
 
 pygame.init()
@@ -16,16 +15,6 @@ pygame.init()
 size = (1200, 900)
 screen = pygame.display.set_mode(size)
 pygame.display.set_caption("PONG 2.0")
-
-""" 
-uielement = UIElement(
-    center_position=(450, 500),
-    font_size=30,
-    bg_rgb=BLUE,
-    text_rgb=WHITE,
-    text="Hello World"
-) 
-"""
 
 
 def init_position(sprite, x, y):
@@ -140,9 +129,9 @@ while True:
 
     # Display scores
     font = pygame.font.Font(None, 74)
-    text = font.render(str(scoreA), 1, colors.WHITE)
+    text = font.render(str(scoreA), True, colors.WHITE)
     screen.blit(text, (280, 30))
-    text = font.render(str(scoreB), 1, colors.WHITE)
+    text = font.render(str(scoreB), True, colors.WHITE)
     screen.blit(text, (880, 30))
 
     # Updating the screen what we've drawn
@@ -150,6 +139,3 @@ while True:
 
     # Limit to 60 FPS
     clock.tick()
-
-# Once we have exited the main program loop we can stop the game engine
-pygame.quit()
