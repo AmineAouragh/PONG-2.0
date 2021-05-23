@@ -44,6 +44,28 @@ clock = pygame.time.Clock()
 scoreA = 0
 scoreB = 0
 
+
+def text_objects(text, font):
+    textSurface = font.render(text, True, colors.VIVID_ORANGE)
+    return textSurface, textSurface.get_rect()
+
+
+def paused():
+
+    large_text = pygame.font.SysFont("comicsansms", 115)
+    TextSurf, TextRect = text_objects("Paused", large_text)
+    TextRect.center = (600, 450)
+    screen.blit(TextSurf, TextRect)
+
+    while pause:
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+
+        pygame.display.update()
+        clock.tick(15)
+
 # ----Main program loop----
 while True:
 
@@ -65,6 +87,7 @@ while True:
             if event.key == pygame.K_p or event.key == pygame.K_SPACE:
 
                 pause = True
+                paused()
 
     while pause:
 
