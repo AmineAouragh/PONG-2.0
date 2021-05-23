@@ -60,11 +60,11 @@ def paused():
     while pause:
 
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
+            if event.type == pygame.QUIT or event.key == pygame.K_x:
                 pygame.quit()
 
         pygame.display.update()
-        clock.tick(15)
+
 
 # ----Main program loop----
 while True:
@@ -88,10 +88,6 @@ while True:
 
                 pause = True
                 paused()
-
-    while pause:
-
-        pause = True
 
     # Moving the paddles when the user uses the arrow keys
     keys = pygame.key.get_pressed()
