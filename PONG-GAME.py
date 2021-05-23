@@ -1,6 +1,5 @@
 # Import the pygame library and initialise the game engine
 import pygame
-import sys
 from time import sleep
 from playsound import playsound
 from scoredisplayer import ScoreDisplayer
@@ -56,14 +55,12 @@ while True:
         if event.type == pygame.QUIT:  # If user clicked close
 
             pygame.quit()
-            sys.exit()
 
         elif event.type == pygame.KEYDOWN:
 
             if event.key == pygame.K_x:  # Pressing x will quit the game
 
                 pygame.quit()
-                sys.exit()
 
             if event.key == pygame.K_p or event.key == pygame.K_SPACE:
 
