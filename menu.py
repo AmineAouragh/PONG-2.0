@@ -16,6 +16,7 @@ from pygame.rect import Rect
 import colors
 from enum import Enum
 from pygame import mixer
+from time import sleep
 
 BLUE = (106, 159, 181)
 
@@ -34,6 +35,12 @@ class GameState(Enum):
     THEMES = 2  # Where you choose a special theme of the game
     LEVELS = 3  # Where you choose a level (Beginner, Medium, Hard)
     MODE = 4  # Choose the mode of the game: TRAINING, MULTIPLAYER, Versus AI, ONLINE
+
+
+class GameThemes(Enum):
+    CLASSIC = 1
+    BLACK_RED = 2
+    SOCCER = 3
 
 
 class UIElement(Sprite):
@@ -182,7 +189,7 @@ def menu_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 112
+            quit_game_on_event_type(event)  # The block of this function is on line 101
 
         screen.fill(BLUE)
 
@@ -220,7 +227,7 @@ def game_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 112
+            quit_game_on_event_type(event)  # The block of this function is on line 101
 
         screen.fill(BLUE)
 
@@ -240,7 +247,7 @@ def themes_screen(screen):
         bg_rgb=BLUE,
         text_rgb=colors.WHITE,
         text="CLASSIC BLACK & WHITE",
-        action=GameState.MAIN_MENU
+        action=GameThemes.CLASSIC
     )
 
     black_red_theme = UIElement(
@@ -249,7 +256,7 @@ def themes_screen(screen):
         bg_rgb=BLUE,
         text_rgb=colors.WHITE,
         text="BLACK & RED",
-        action=GameState.MAIN_MENU
+        action=GameThemes.BLACK_RED
     )
 
     green_white_theme = UIElement(
@@ -258,7 +265,7 @@ def themes_screen(screen):
         bg_rgb=BLUE,
         text_rgb=colors.WHITE,
         text="GREEN & WHITE SOCCER THEME",
-        action=GameState.MAIN_MENU
+        action=GameThemes.SOCCER
     )
 
     buttons = [classic_theme, black_red_theme, green_white_theme]
@@ -276,7 +283,7 @@ def themes_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 112
+            quit_game_on_event_type(event)  # The block of this function is on line 101
 
         screen.fill(BLUE)
 
@@ -288,7 +295,7 @@ def themes_screen(screen):
             button.draw(screen)
 
         pygame.display.flip()
-
+        
 
 def levels_screen(screen):
 
@@ -302,7 +309,7 @@ def levels_screen(screen):
     )
 
     medium_level = UIElement(
-        center_position=(400, 350),
+        center_position=(400, 300),
         font_size=30,
         bg_rgb=BLUE,
         text_rgb=colors.WHITE,
@@ -311,7 +318,7 @@ def levels_screen(screen):
     )
 
     hard_level = UIElement(
-        center_position=(400, 550),
+        center_position=(400, 450),
         font_size=30,
         bg_rgb=BLUE,
         text_rgb=colors.WHITE,
@@ -334,7 +341,7 @@ def levels_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 112
+            quit_game_on_event_type(event)  # The block of this function is on line 101
 
         screen.fill(BLUE)
 
@@ -401,7 +408,7 @@ def modes_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 112
+            quit_game_on_event_type(event)  # The block of this function is on line 101
 
         screen.fill(BLUE)
 
@@ -439,6 +446,18 @@ def main():
         if game_state == GameState.THEMES:
 
             game_state = themes_screen(screen)
+
+        if game_state == GameThemes.CLASSIC:
+
+            game_state = classic_screen(screen)
+
+        if game_state == GameThemes.BLACK_RED:
+
+            game_state = black_red_screen(screen)
+
+        if game_state == GameThemes.SOCCER:
+
+            game_state = soccer_screen(screen)
 
         if game_state == GameState.LEVELS:
 
