@@ -1,5 +1,7 @@
 import pygame
 import colors
+from paddle import Paddle
+from ball import Ball
 
 class GameScreen:
 
