@@ -189,7 +189,7 @@ def menu_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 101
+            quit_game_on_event_type(event)  # The block of this function is on line 119
 
         screen.fill(BLUE)
 
@@ -227,7 +227,7 @@ def game_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 101
+            quit_game_on_event_type(event)  # The block of this function is on line 119
 
         screen.fill(BLUE)
 
@@ -283,7 +283,7 @@ def themes_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 101
+            quit_game_on_event_type(event)  # The block of this function is on line 119
 
         screen.fill(BLUE)
 
@@ -341,7 +341,7 @@ def levels_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 101
+            quit_game_on_event_type(event)  # The block of this function is on line 119
 
         screen.fill(BLUE)
 
@@ -408,7 +408,7 @@ def modes_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 101
+            quit_game_on_event_type(event)  # The block of this function is on line 119
 
         screen.fill(BLUE)
 
