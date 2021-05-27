@@ -17,6 +17,7 @@ import colors
 from enum import Enum
 from pygame import mixer
 from time import sleep
+from screentest import GameScreen
 
 BLUE = (106, 159, 181)
 
@@ -189,7 +190,7 @@ def menu_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 119
+            quit_game_on_event_type(event)  # The block of this function is on line 120
 
         screen.fill(BLUE)
 
@@ -227,7 +228,7 @@ def game_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 119
+            quit_game_on_event_type(event)  # The block of this function is on line 120
 
         screen.fill(BLUE)
 
@@ -283,7 +284,7 @@ def themes_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 119
+            quit_game_on_event_type(event)  # The block of this function is on line 120
 
         screen.fill(BLUE)
 
@@ -295,7 +296,13 @@ def themes_screen(screen):
             button.draw(screen)
 
         pygame.display.flip()
-        
+
+""" 
+def classic_screen(screen):
+
+    classic = GameScreen((1200, 900), colors.BLACK)
+
+"""
 
 def levels_screen(screen):
 
@@ -341,7 +348,7 @@ def levels_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 119
+            quit_game_on_event_type(event)  # The block of this function is on line 120
 
         screen.fill(BLUE)
 
@@ -408,7 +415,7 @@ def modes_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 119
+            quit_game_on_event_type(event)  # The block of this function is on line 120
 
         screen.fill(BLUE)
 
@@ -446,7 +453,7 @@ def main():
         if game_state == GameState.THEMES:
 
             game_state = themes_screen(screen)
-
+        """ 
         if game_state == GameThemes.CLASSIC:
 
             game_state = classic_screen(screen)
@@ -458,7 +465,7 @@ def main():
         if game_state == GameThemes.SOCCER:
 
             game_state = soccer_screen(screen)
-
+        """
         if game_state == GameState.LEVELS:
 
             game_state = levels_screen(screen)
