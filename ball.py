@@ -1,9 +1,10 @@
 import pygame
 from random import randint
 from colors import BLACK
+from pygame.sprite import Sprite
 
 
-class Ball(pygame.sprite.Sprite):
+class Ball(Sprite):
 
     def __init__(self, color, width, height):
 
@@ -26,4 +27,3 @@ class Ball(pygame.sprite.Sprite):
     def bounce(self):
         self.speed[0] = -self.speed[0]
         self.speed[1] = -self.speed[1]
-
