@@ -1,8 +1,9 @@
 import pygame
+from colors import BLACK
+from pygame.sprite import Sprite
 
-BLACK = (0, 0, 0)
 
-class Paddle(pygame.sprite.Sprite):
+class Paddle(Sprite):
 
     def __init__(self, color, width, height):
         # Call the parent class (Sprite)  constructor
