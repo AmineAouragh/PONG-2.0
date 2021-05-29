@@ -7,17 +7,12 @@ When the implementation is finished, tested and confirmed to be perfect
 It will be imported to the main file of the game and linked to the game
 """
 
-import sys
-
 import pygame
 import pygame.freetype
 from pygame.sprite import Sprite
-from pygame.rect import Rect
 import colors
 from enum import Enum
 from pygame import mixer
-from time import sleep
-from screentest import GameScreen
 
 BLUE = (106, 159, 181)
 
@@ -92,16 +87,6 @@ class UIElement(Sprite):
 
             self.mouse_over = True
 
-            """pygame.mouse.set_visible(False)
-            hand_hover_cursor = pygame.image.load("hand-hover.png").convert_alpha()
-            hand_hover_cursor_rect = hand_hover_cursor.get_rect()
-            hand_hover_cursor_rect.center = pygame.mouse.get_pos()"""
-
-            """
-              The sound still needs to be fixed coz it's playing in loop
-              when button is hovered
-              I have to make it play once and stop
-            """
             pygame.mixer.Sound("beep.mp3").play()
             if mouse_up:
                 return self.action
@@ -190,7 +175,7 @@ def menu_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 120
+            quit_game_on_event_type(event)  # The block of this function is on line 105
 
         screen.fill(BLUE)
 
@@ -228,7 +213,7 @@ def game_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 120
+            quit_game_on_event_type(event)  # The block of this function is on line 105
 
         screen.fill(BLUE)
 
@@ -284,7 +269,7 @@ def themes_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 120
+            quit_game_on_event_type(event)  # The block of this function is on line 105
 
         screen.fill(BLUE)
 
@@ -297,12 +282,6 @@ def themes_screen(screen):
 
         pygame.display.flip()
 
-""" 
-def classic_screen(screen):
-
-    classic = GameScreen((1200, 900), colors.BLACK)
-
-"""
 
 def levels_screen(screen):
 
@@ -348,7 +327,7 @@ def levels_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 120
+            quit_game_on_event_type(event)  # The block of this function is on line 105
 
         screen.fill(BLUE)
 
@@ -415,7 +394,7 @@ def modes_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 120
+            quit_game_on_event_type(event)  # The block of this function is on line 105
 
         screen.fill(BLUE)
 
