@@ -16,6 +16,8 @@ from pygame import mixer
 
 BLUE = (106, 159, 181)
 
+pygame.display.set_caption("MENU")
+
 
 def create_surface_with_text(text, font_size, text_rgb, bg_rgb):
     """ Returns surface with text written on """
@@ -175,7 +177,7 @@ def menu_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 105
+            quit_game_on_event_type(event)  # The block of this function is on line 107
 
         screen.fill(BLUE)
 
@@ -213,7 +215,7 @@ def game_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 105
+            quit_game_on_event_type(event)  # The block of this function is on line 107
 
         screen.fill(BLUE)
 
@@ -269,7 +271,7 @@ def themes_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 105
+            quit_game_on_event_type(event)  # The block of this function is on line 107
 
         screen.fill(BLUE)
 
@@ -327,7 +329,7 @@ def levels_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 105
+            quit_game_on_event_type(event)  # The block of this function is on line 107
 
         screen.fill(BLUE)
 
@@ -394,7 +396,7 @@ def modes_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 105
+            quit_game_on_event_type(event)  # The block of this function is on line 107
 
         screen.fill(BLUE)
 
@@ -423,15 +425,19 @@ def main():
 
         if game_state == GameState.MAIN_MENU:
 
+            pygame.display.set_caption("Menu")
             game_state = menu_screen(screen)
 
         if game_state == GameState.NEWGAME:
 
+            pygame.display.set_caption("New Game")
             game_state = game_screen(screen)
 
         if game_state == GameState.THEMES:
 
+            pygame.display.set_caption("Themes")
             game_state = themes_screen(screen)
+
         """ 
         if game_state == GameThemes.CLASSIC:
 
@@ -447,11 +453,15 @@ def main():
         """
         if game_state == GameState.LEVELS:
 
+            pygame.display.set_caption("Levels")
             game_state = levels_screen(screen)
 
-        if game_state == GameState.MODE:
 
+        if game_state == GameState.MODE:
+            
+            pygame.display.set_caption("Game Mode")
             game_state = modes_screen(screen)
+
 
         if game_state == GameState.QUIT:
 
