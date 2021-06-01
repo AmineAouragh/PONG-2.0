@@ -2,10 +2,13 @@
 # Implement a voice assistant which takes commands from the user and reacts to it
 # The user can pause the game by saying "PAUSE" or quit by saying "QUIT" or "EXIT"
 
+# TODO Pause Feature
+# Unpause the game
+# For now I can only pause but can't unpause so to continue the game I have to quit and replay
+
 # Import the pygame library and initialise the game engine
 import pygame
 from time import sleep
-from playsound import playsound
 from scoredisplayer import ScoreDisplayer
 from paddle import Paddle
 from ball import Ball
@@ -50,11 +53,11 @@ scoreB = 0
 
 
 def text_objects(text, font):
-    textSurface = font.render(text, True, colors.VIVID_ORANGE)
-    return textSurface, textSurface.get_rect()
+    text_surf = font.render(text, True, colors.VIVID_ORANGE)
+    return text_surf, text_surf.get_rect()
 
 
-def paused():
+def pause_game():
 
     large_text = pygame.font.SysFont("comicsansms", 115)
     TextSurf, TextRect = text_objects("Paused", large_text)
@@ -91,7 +94,7 @@ while True:
             if event.key == pygame.K_p or event.key == pygame.K_SPACE:
 
                 pause = True
-                paused()
+                pause_game()
 
     # Moving the paddles when the user uses the arrow keys
     keys = pygame.key.get_pressed()
@@ -133,7 +136,6 @@ while True:
     if pygame.sprite.collide_mask(ball, paddleL) or pygame.sprite.collide_mask(ball, paddleR):
 
         ball.bounce()
-        # playsound("collision.wav")
 
     # Clear the screen to black
     screen.fill(colors.BLACK)
