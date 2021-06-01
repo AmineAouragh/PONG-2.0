@@ -18,7 +18,7 @@ class GameScreen:
         self.screen = pygame.display.set_mode(size)
         self.color = self.screen.fill(color)
 
-    def color_sprites(self, color):
+    def create_sprites(self, color):
 
         self.left_paddle = Paddle(color, 20, 120)
         self.right_paddle = Paddle(color, 20, 120)
@@ -61,10 +61,13 @@ while True:
 
                 pygame.quit()
 
-    classic = GameScreen((1200, 900), colors.BLACK)
-    classic.create_sprites(colors.WHITE)
-    classic.position()
-    classic.draw_sprites()
+    # Testing the creation of a screen object
+    # To display the screen object uncomment the 4 lines below
+
+    # classic = GameScreen((1200, 900), colors.BLACK)
+    # classic.create_sprites(colors.WHITE)
+    # classic.position()
+    # classic.draw_sprites()
 
     # Updating the screen what we've drawn
     pygame.display.flip()
