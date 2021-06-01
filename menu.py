@@ -7,6 +7,12 @@ When the implementation is finished, tested and confirmed to be perfect
 It will be imported to the main file of the game and linked to the game
 """
 
+# TODO Customized Cursor
+# When the mouse is over an element the cursor should change its appearance
+# If hover set mouse display to invisible and draw a hand cursor
+# If click draw the original image of the element with initial size
+
+
 import pygame
 import pygame.freetype
 from pygame.sprite import Sprite
@@ -170,6 +176,7 @@ def menu_screen(screen):
         # mouse_down = False
 
         for event in pygame.event.get():
+
             if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 mouse_up = True
             """
@@ -177,7 +184,7 @@ def menu_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 107
+            quit_game_on_event_type(event)  # The block of this function is on line 113
 
         screen.fill(BLUE)
 
@@ -215,7 +222,7 @@ def game_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 107
+            quit_game_on_event_type(event)  # The block of this function is on line 113
 
         screen.fill(BLUE)
 
@@ -271,7 +278,7 @@ def themes_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 107
+            quit_game_on_event_type(event)  # The block of this function is on line 113
 
         screen.fill(BLUE)
 
@@ -329,7 +336,7 @@ def levels_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 107
+            quit_game_on_event_type(event)  # The block of this function is on line 113
 
         screen.fill(BLUE)
 
@@ -396,7 +403,7 @@ def modes_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 107
+            quit_game_on_event_type(event)  # The block of this function is on line 113
 
         screen.fill(BLUE)
 
@@ -458,7 +465,7 @@ def main():
 
 
         if game_state == GameState.MODE:
-            
+
             pygame.display.set_caption("Game Mode")
             game_state = modes_screen(screen)
 
