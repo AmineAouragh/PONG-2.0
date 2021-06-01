@@ -1,3 +1,7 @@
+# TODO Voice Assistant with Speech Recognition
+# Implement a voice assistant which takes commands from the user and reacts to it
+# The user can pause the game by saying "PAUSE" or quit by saying "QUIT" or "EXIT"
+
 # Import the pygame library and initialise the game engine
 import pygame
 from time import sleep
