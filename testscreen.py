@@ -18,7 +18,7 @@ class GameScreen:
         self.screen = pygame.display.set_mode(size)
         self.color = self.screen.fill(color)
 
-    def create_sprites(self, color):
+    def color_sprites(self, color):
 
         self.left_paddle = Paddle(color, 20, 120)
         self.right_paddle = Paddle(color, 20, 120)
