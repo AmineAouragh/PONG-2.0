@@ -19,6 +19,7 @@ from pygame.sprite import Sprite
 import colors
 from enum import Enum
 from pygame import mixer
+from gamescreen import GameScreen
 
 BLUE = (106, 159, 181)
 
@@ -184,7 +185,7 @@ def menu_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 113
+            quit_game_on_event_type(event)  # The block of this function is on line 114
 
         screen.fill(BLUE)
 
@@ -222,7 +223,7 @@ def game_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 113
+            quit_game_on_event_type(event)  # The block of this function is on line 114
 
         screen.fill(BLUE)
 
@@ -278,7 +279,7 @@ def themes_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 113
+            quit_game_on_event_type(event)  # The block of this function is on line 114
 
         screen.fill(BLUE)
 
@@ -290,6 +291,30 @@ def themes_screen(screen):
             button.draw(screen)
 
         pygame.display.flip()
+
+
+def classic_screen():
+
+    classic = GameScreen((1200, 900), colors.BLACK)
+    classic.create_sprites(colors.WHITE)
+    classic.position()
+    classic.draw_sprites()
+
+
+def black_red_screen():
+
+    black_red = GameScreen((1200, 900), colors.BLACK)
+    black_red.create_sprites(colors.RED)
+    black_red.position()
+    black_red.draw_sprites()
+
+
+def soccer_screen():
+
+    soccer = GameScreen((1200, 900), colors.GREEN)
+    soccer.create_sprites(colors.WHITE)
+    soccer.position()
+    soccer.draw_sprites()
 
 
 def levels_screen(screen):
@@ -336,7 +361,7 @@ def levels_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 113
+            quit_game_on_event_type(event)  # The block of this function is on line 114
 
         screen.fill(BLUE)
 
@@ -403,7 +428,7 @@ def modes_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 113
+            quit_game_on_event_type(event)  # The block of this function is on line 114
 
         screen.fill(BLUE)
 
@@ -463,12 +488,10 @@ def main():
             pygame.display.set_caption("Levels")
             game_state = levels_screen(screen)
 
-
         if game_state == GameState.MODE:
 
             pygame.display.set_caption("Game Mode")
             game_state = modes_screen(screen)
-
 
         if game_state == GameState.QUIT:
 
