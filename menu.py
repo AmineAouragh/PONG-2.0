@@ -300,6 +300,8 @@ def classic_screen():
     classic.position()
     classic.draw_sprites()
 
+    pygame.display.flip()
+
 
 def black_red_screen():
 
@@ -308,6 +310,8 @@ def black_red_screen():
     black_red.position()
     black_red.draw_sprites()
 
+    pygame.display.flip()
+
 
 def soccer_screen():
 
@@ -315,6 +319,8 @@ def soccer_screen():
     soccer.create_sprites(colors.WHITE)
     soccer.position()
     soccer.draw_sprites()
+
+    pygame.display.flip()
 
 
 def levels_screen(screen):
@@ -470,19 +476,19 @@ def main():
             pygame.display.set_caption("Themes")
             game_state = themes_screen(screen)
 
-        """ 
+
         if game_state == GameThemes.CLASSIC:
 
-            game_state = classic_screen(screen)
+            game_state = classic_screen()
 
         if game_state == GameThemes.BLACK_RED:
 
-            game_state = black_red_screen(screen)
+            game_state = black_red_screen()
 
         if game_state == GameThemes.SOCCER:
 
-            game_state = soccer_screen(screen)
-        """
+            game_state = soccer_screen()
+
         if game_state == GameState.LEVELS:
 
             pygame.display.set_caption("Levels")
