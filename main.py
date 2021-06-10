@@ -52,22 +52,18 @@ scoreA = 0
 scoreB = 0
 
 
-def text_objects(text, font):
-    text_surf = font.render(text, True, colors.VIVID_ORANGE)
-    return text_surf, text_surf.get_rect()
-
-
 def pause_game():
 
     large_text = pygame.font.SysFont("comicsansms", 115)
-    TextSurf, TextRect = text_objects("Paused", large_text)
-    TextRect.center = (600, 450)
-    screen.blit(TextSurf, TextRect)
+    text_surf = large_text.render("Paused", True, colors.VIVID_ORANGE)
+    text_rect = text_surf.get_rect()
+    text_rect.center = (600, 450)
+    screen.blit(text_surf, text_rect)
 
     while pause:
 
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT or event.key == pygame.K_x:
+        for ev in pygame.event.get():
+            if ev.type == pygame.QUIT or ev.key == pygame.K_x:
                 pygame.quit()
 
         pygame.display.update()
@@ -90,6 +86,8 @@ while True:
             if event.key == pygame.K_x:  # Pressing x will quit the game
 
                 pygame.quit()
+
+            # TODO Fix the pause feature because when the game is paused if I move the mouse the system quit the game
 
             if event.key == pygame.K_p or event.key == pygame.K_SPACE:
 
