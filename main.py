@@ -2,10 +2,6 @@
 # Implement a voice assistant which takes commands from the user and reacts to it
 # The user can pause the game by saying "PAUSE" or quit by saying "QUIT" or "EXIT"
 
-# TODO Pause Feature
-# Unpause the game
-# For now I can only pause but can't unpause so to continue the game I have to quit and replay
-
 # Import the pygame library and initialise the game engine
 import pygame
 from time import sleep
@@ -54,19 +50,34 @@ scoreB = 0
 
 def pause_game():
 
-    large_text = pygame.font.SysFont("comicsansms", 115)
-    text_surf = large_text.render("Paused", True, colors.VIVID_ORANGE)
-    text_rect = text_surf.get_rect()
-    text_rect.center = (600, 450)
-    screen.blit(text_surf, text_rect)
+    paused = True
 
-    while pause:
+    while paused:
 
         for ev in pygame.event.get():
-            if ev.type == pygame.QUIT or ev.key == pygame.K_x:
+
+            if ev.type == pygame.QUIT:
+
                 pygame.quit()
 
+            if ev.type == pygame.KEYDOWN:
+
+                if ev.key == pygame.K_c or event.key == pygame.K_SPACE:
+
+                    paused = False
+
+                elif ev.key == pygame.K_q:
+
+                    pygame.quit()
+
+        large_text = pygame.font.SysFont("comicsansms", 115)
+        text_surf = large_text.render("Paused", True, colors.VIVID_ORANGE)
+        text_rect = text_surf.get_rect()
+        text_rect.center = (600, 450)
+        screen.blit(text_surf, text_rect)
+
         pygame.display.update()
+        clock.tick(5)
 
 
 # ----Main program loop----
@@ -89,9 +100,8 @@ while True:
 
             # TODO Fix the pause feature because when the game is paused if I move the mouse the system quit the game
 
-            if event.key == pygame.K_p or event.key == pygame.K_SPACE:
+            if event.key == pygame.K_p:
 
-                pause = True
                 pause_game()
 
     # Moving the paddles when the user uses the arrow keys
