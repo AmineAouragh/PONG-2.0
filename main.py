@@ -73,7 +73,7 @@ def pause_game():
         large_text = pygame.font.SysFont("comicsansms", 115)
         text_surf = large_text.render("Paused", True, colors.VIVID_ORANGE)
         text_rect = text_surf.get_rect()
-        text_rect.center = (600, 450)
+        text_rect.center = (600, 400)
         screen.blit(text_surf, text_rect)
 
         pygame.display.update()
