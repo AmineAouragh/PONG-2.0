@@ -62,7 +62,7 @@ def pause_game():
 
             if ev.type == pygame.KEYDOWN:
 
-                if ev.key == pygame.K_c or event.key == pygame.K_SPACE:
+                if ev.key == pygame.K_c or ev.key == pygame.K_SPACE:
 
                     paused = False
 
