@@ -36,10 +36,11 @@ def create_surface_with_text(text, font_size, text_rgb, bg_rgb):
 class GameState(Enum):
     QUIT = -1  # When you quit the game
     MAIN_MENU = 0  # The main_menu of the game
-    NEWGAME = 1  # Ready to play
+    NEW_GAME = 1  # Ready to play
     THEMES = 2  # Where you choose a special theme of the game
     LEVELS = 3  # Where you choose a level (Beginner, Medium, Hard)
     MODE = 4  # Choose the mode of the game: TRAINING, MULTIPLAYER, Versus AI, ONLINE
+    MUSIC = 4  # Choose a music from library
 
 
 class GameThemes(Enum):
@@ -124,16 +125,16 @@ def menu_screen(screen):
 
     # create a ui element
     start_btn = UIElement(
-        center_position=(400, 100),
+        center_position=(400, 60),
         font_size=30,
         bg_rgb=BLUE,
         text_rgb=colors.WHITE,
         text="START",
-        action=GameState.NEWGAME
+        action=GameState.NEW_GAME
     )
 
     theme_btn = UIElement(
-        center_position=(400, 200),
+        center_position=(400, 120),
         font_size=30,
         bg_rgb=BLUE,
         text_rgb=colors.WHITE,
@@ -142,7 +143,7 @@ def menu_screen(screen):
     )
 
     level_btn = UIElement(
-        center_position=(400, 300),
+        center_position=(400, 180),
         font_size=30,
         bg_rgb=BLUE,
         text_rgb=colors.WHITE,
@@ -151,16 +152,25 @@ def menu_screen(screen):
     )
 
     mode_btn = UIElement(
-        center_position=(400, 400),
+        center_position=(400, 240),
         font_size=30,
         bg_rgb=BLUE,
         text_rgb=colors.WHITE,
         text="GAME MODE",
         action=GameState.MODE
     )
+    
+    music_library_btn = UIElement(
+        center_position=(400, 300),
+        font_size=30,
+        bg_rgb=BLUE,
+        text_rgb=colors.WHITE,
+        text="MUSIC LIBRARY",
+        action=GameState.MUSIC
+    )
 
     quit_btn = UIElement(
-        center_position=(400, 500),
+        center_position=(400, 360),
         font_size=30,
         bg_rgb=BLUE,
         text_rgb=colors.WHITE,
@@ -185,7 +195,7 @@ def menu_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 114
+            quit_game_on_event_type(event)  # The block of this function is on line 101
 
         screen.fill(BLUE)
 
@@ -223,7 +233,7 @@ def game_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 114
+            quit_game_on_event_type(event)  # The block of this function is on line 101
 
         screen.fill(BLUE)
 
@@ -279,7 +289,7 @@ def themes_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 114
+            quit_game_on_event_type(event)  # The block of this function is on line 101
 
         screen.fill(BLUE)
 
@@ -367,7 +377,7 @@ def levels_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 114
+            quit_game_on_event_type(event)  # The block of this function is on line 101
 
         screen.fill(BLUE)
 
@@ -434,7 +444,7 @@ def modes_screen(screen):
                 mouse_down = True
             """
 
-            quit_game_on_event_type(event)  # The block of this function is on line 114
+            quit_game_on_event_type(event)  # The block of this function is on line 101
 
         screen.fill(BLUE)
 
@@ -466,16 +476,16 @@ def main():
             pygame.display.set_caption("Menu")
             game_state = menu_screen(screen)
 
-        if game_state == GameState.NEWGAME:
+        if game_state == GameState.NEW_GAME:
 
             pygame.display.set_caption("New Game")
+            # exec("game.py")
             game_state = game_screen(screen)
 
         if game_state == GameState.THEMES:
 
             pygame.display.set_caption("Themes")
             game_state = themes_screen(screen)
-
 
         if game_state == GameThemes.CLASSIC:
 
