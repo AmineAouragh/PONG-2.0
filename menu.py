@@ -125,7 +125,7 @@ def menu_screen(screen):
 
     # create a ui element
     start_btn = UIElement(
-        center_position=(400, 60),
+        center_position=(400, 90),
         font_size=30,
         bg_rgb=BLUE,
         text_rgb=colors.WHITE,
@@ -134,7 +134,7 @@ def menu_screen(screen):
     )
 
     theme_btn = UIElement(
-        center_position=(400, 120),
+        center_position=(400, 180),
         font_size=30,
         bg_rgb=BLUE,
         text_rgb=colors.WHITE,
@@ -143,7 +143,7 @@ def menu_screen(screen):
     )
 
     level_btn = UIElement(
-        center_position=(400, 180),
+        center_position=(400, 270),
         font_size=30,
         bg_rgb=BLUE,
         text_rgb=colors.WHITE,
@@ -152,16 +152,16 @@ def menu_screen(screen):
     )
 
     mode_btn = UIElement(
-        center_position=(400, 240),
+        center_position=(400, 360),
         font_size=30,
         bg_rgb=BLUE,
         text_rgb=colors.WHITE,
         text="GAME MODE",
         action=GameState.MODE
     )
-    
+
     music_library_btn = UIElement(
-        center_position=(400, 300),
+        center_position=(400, 450),
         font_size=30,
         bg_rgb=BLUE,
         text_rgb=colors.WHITE,
@@ -170,7 +170,7 @@ def menu_screen(screen):
     )
 
     quit_btn = UIElement(
-        center_position=(400, 360),
+        center_position=(400, 540),
         font_size=30,
         bg_rgb=BLUE,
         text_rgb=colors.WHITE,
@@ -179,7 +179,7 @@ def menu_screen(screen):
     )
 
     # This list hold the different buttons on the main_menu
-    buttons = [start_btn, theme_btn, level_btn, mode_btn, quit_btn]
+    buttons = [start_btn, theme_btn, level_btn, mode_btn, music_library_btn, quit_btn]
 
     while True:
         # No button is clicked yet
@@ -508,6 +508,10 @@ def main():
 
             pygame.display.set_caption("Game Mode")
             game_state = modes_screen(screen)
+
+        if game_state == GameState.MUSIC:
+
+            pygame.display.set_caption("Music Library")
 
         if game_state == GameState.QUIT:
 
